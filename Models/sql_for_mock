@@ -1,0 +1,12 @@
+INSERT INTO products (sku, name, price, type, size, weight, width, length, height)
+VALUES
+(1, 'Mi.mp3', 28.0, 'dvd', 1, 89.07, 1, 1, 1),
+(2, 'EstQuam.ppt', 60.58, 'book', NULL, 10.71, 2, 2, 2),
+(3, 'DuisAtVelit.png', 12.55, 'furniture', NULL, 70.27, 3, 3, 3),
+(4, 'OrciLuctus.ppt', 12.26, 'book', NULL, 58.1, 4, 4, 4),
+(5, 'ConvallisDuisConsequat.tiff', 58.3, 'dvd', NULL, 21.2, 5, 5, 5),
+(6, 'UtUltrices.ppt', 98.37, 'furniture', NULL, 2.7, 6, 6, 6),
+(7, 'QuamFringillaRhoncus.jpeg', 82.58, 'book', NULL, 40.14, 7, 7, 7),
+(8, 'AmetSapienDignissim.ppt', 48.68, 'dvd', NULL, 8.01, 8, 8, 8),
+(9, 'AdipiscingMolestie.ppt', 57.66, 'furniture', NULL, 29.59, 9, 9, 9),
+(10, 'Nulla.avi', 96.61, 'book', NULL, 4.76, 10, 10, 10);

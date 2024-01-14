@@ -7,13 +7,6 @@ abstract class Product
     protected $sku;
     protected $name;
     protected $price;
-        
-    // constructor
-    // public function __construct($sku, $name, $price) {
-    //     $this->sku = $sku;
-    //     $this->name = $name;
-    //     $this->price = $price;
-    // }
 
     // // getter and setter
 
@@ -43,9 +36,8 @@ abstract class Product
 
     abstract public function getAllProducts();
     abstract public function deleteSelectedProducts($ids);
-    abstract public function saveProduct($sku, $name, $price, ...$params);
+    abstract public function saveProduct(array $additionalData);
 
-    // abstract public function getProductById($id);
 }
 
 ?>

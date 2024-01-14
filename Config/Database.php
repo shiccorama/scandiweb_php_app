@@ -11,7 +11,7 @@
             try{
                 $this->conn = new PDO($this->dsn, $this->username, $this->password);
                 $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                echo "connected successfully!";
+//                $this->success();
         
             }catch(PDOException $e){
                 echo "Connection Failed " . $e->getMessage();
@@ -19,7 +19,9 @@
 
         }
 
+        public function success(){
+            echo "connected successfully!";
+        }
+
     
     }
-
-?>

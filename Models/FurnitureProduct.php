@@ -51,65 +51,49 @@ class FurnitureProduct extends Product {
     }
 
     // inherited methods
-    // Other specific methods for dvdProduct
     public function getAllProducts() {
-        $data = array();
-        // Get all products from the database
-        $sql = "SELECT * FROM " . self::$table_name;
-        // Execute the query
-        $stmt = $this->db->conn->query($sql);
-        // Fetch all products
-        $allProducts = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        // return all products
-        return $allProducts;
-
+        //pass
     }
-
 
     public function deleteSelectedProducts($ids)
     {
-        $db = new Database();
-    
-        // Generating placeholders for the prepared statement
-        $placeholders = rtrim(str_repeat('?, ', count($ids)), ', ');
-    
-        $sql = "DELETE FROM " . self::$table_name . " WHERE id IN ($placeholders)";
-    
-        // Get the PDO connection from the Database instance
-        $stmt = $db->conn->prepare($sql);
-    
-        // Execute the query with the given IDs
-        $stmt->execute($ids);
-    
-        // Return the number of affected rows
-        return $stmt->rowCount();
+        //pass
     }
 
-    public function saveProduct($sku, $name, $price, ...$params) 
+    // Other specific methods for BookProduct
+    public function saveProduct(array $additionalData)
     {
-        list($width, $length, $height) = $params;
-        $this->saveProductWithWidthLengthHeight($sku, $name, $price, $this->width, $this->length, $this->height);
-    }
+        // Ensure all mandatory fields are present in the $additionalData array
+        if (!isset($additionalData["sku"], $additionalData["name"], $additionalData["price"], $additionalData["productType"],$additionalData["width"], $additionalData["length"], $additionalData["height"])) {
+            return "Missing required data for product.";
+        }
+        // Extract data from $additionalData
+        $sku = $additionalData["sku"];
+        $name = $additionalData["name"];
+        $price = $additionalData["price"];
+        $productType = $additionalData["productType"];
+        $width = $additionalData["width"];
+        $length = $additionalData["length"];
+        $height = $additionalData["height"];
 
-    public function saveProductWithWidthLengthHeight($sku, $name, $price, $width, $length, $height)
-    {
-        // insert values into table
-        $sql = "INSERT INTO" . self::$table_name . "(sku, name, price, width, length, height) VALUES (:sku, :name, :price, :width, :length, :height)";
-        $stmt = $db->conn->prepare($sql);
-        
+        // Prepare and execute the SQL query
+        $sql = "INSERT INTO " . self::$table_name . " (sku, name, price, productType, width, length, height) VALUES (:sku, :name, :price, :productType, :width, :length, :height)";
+
+        $stmt = $this->db->conn->prepare($sql);
         $stmt->bindParam(':sku', $sku);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':price', $price);
-        $stmt->bindParam(':weight', $weight);
-
+        $stmt->bindParam(':productType', $productType);
+        $stmt->bindParam(':width', $width);
+        $stmt->bindParam(':length', $length);
+        $stmt->bindParam(':height', $height);
         $stmt->execute();
 
-        return $stmt->rowCount();
+        //  return "Product saved successfully!";
+
     }
 
 
 }
 
 
-
-?>
